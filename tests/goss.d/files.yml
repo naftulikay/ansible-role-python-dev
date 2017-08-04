@@ -1,0 +1,4 @@
+---
+file:
+  '/dev/zero':
+    exists: true
