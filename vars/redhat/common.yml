@@ -1,0 +1,19 @@
+---
+python_system_packages:
+  - python
+  - python-devel
+  - make
+  - gcc
+  - python2-pip
+  - python34-pip
+  - git
+  - patch
+  - zlib-devel
+  - bzip2
+  - bzip2-devel
+  - readline-devel
+  - sqlite
+  - sqlite-devel
+  - openssl-devel
+  - xz
+  - xz-devel

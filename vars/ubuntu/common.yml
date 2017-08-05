@@ -1,0 +1,22 @@
+---
+python_system_packages:
+  - python
+  - python-dev
+  - make
+  - gcc
+  - python-pip
+  - python3-pip
+  - build-essential
+  - libssl-dev
+  - zlib1g-dev
+  - libbz2-dev
+  - libreadline-dev
+  - libsqlite0-dev
+  - wget
+  - curl
+  - llvm
+  - libncurses5-dev
+  - libncursesw5-dev
+  - xz-utils
+  - tk-dev
+  - git

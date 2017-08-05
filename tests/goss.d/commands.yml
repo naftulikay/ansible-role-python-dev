@@ -1,0 +1,7 @@
+---
+command:
+  # executing pyenv version should return the specified python version
+  'sudo -Hiu {{.Env.python_user}} {{ .Env.pyenv_executable }} version':
+    exit-status: 0
+    stdout:
+      - "{{.Env.python_version}}"

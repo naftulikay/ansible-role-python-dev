@@ -1,1 +1,47 @@
 ---
+- name: fail when python user is not defined
+  fail: msg="The python_user variable must be set."
+  when: (python_user is not defined) or (not python_user)
+
+# set facts to reliably determine os
+- name: discover operating system
+  include: discover/os.yml
+
+# set facts to reliably determine python variables
+- name: discover python
+  include: discover/python.yml
+
+# load per-os and per distro variables
+- name: load variables
+  include_vars: "{{ var_loop_item }}"
+  with_items:
+    - "{{ os_name }}/common.yml"
+    - "{{ os_name }}/{{ os_release }}.yml"
+  loop_control: { loop_var: var_loop_item }
+
+# refresh cache on ubuntu
+- name: refresh apt cache
+  apt: update_cache=yes cache_valid_time=3600
+  when: os_name == "ubuntu"
+
+# install system python dependencies
+- name: install system python dependencies
+  package: name={{ item }} state=present
+  with_items: "{{ python_system_packages }}"
+
+# install pyenv
+- name: install pyenv
+  include: pyenv.yml
+
+# install python
+- name: install python version
+  include: python.yml
+
+# install additional dependencies
+- name: install additional python system packages
+  package: name={{ item }} state=present
+  with_items: "{{ addtl_python_system_packages }}"
+
+- name: install additional python pip packages
+  pip: name={{ item }} state=present
+  with_items: "{{ addtl_python_pip_packages }}"

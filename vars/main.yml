@@ -1,4 +1,6 @@
 ---
-python_version: "2.7"
+python_version: "2.7.13"
 addtl_python_system_packages: []
-addtl_python_pip_packages: []
+addtl_python_pip_packages: [zc.buildout]
+
+pyenv_tmp_installer: /tmp/pyenv

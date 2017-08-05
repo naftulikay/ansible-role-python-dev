@@ -1,0 +1,52 @@
+---
+- name: get python user details
+  command: getent passwd {{ python_user }}
+  become: true
+  become_user: "{{ python_user }}"
+  changed_when: false
+  register: python_user_check
+
+- name: set python user home
+  set_fact:
+    python_user_home: "{{ python_user_check.stdout_lines[0].split(':')[5] }}"
+    python_user_shell: "{{ python_user_check.stdout_lines[0].split(':')[6] }}"
+
+- name: set pyenv facts
+  set_fact:
+    pyenv_executable: "{{ python_user_home }}/.pyenv/bin/pyenv"
+    pyenv_root: "{{ python_user_home }}/.pyenv"
+
+# detect whether pyenv is installed
+- name: detect pyenv installation status
+  command: ls "{{ python_user_home }}/.pyenv"
+  register: pyenv_check
+  changed_when: false
+  failed_when: false
+
+# detect the version of python installed
+- name: detect if python installed
+  command: ls "{{ python_user_home }}/.pyenv/versions/{{ python_version }}"
+  register: python_version_installed
+  become: true
+  become_user: "{{ python_user }}"
+  changed_when: false
+  failed_when: false
+
+- name: get python version
+  shell: "pyenv version |& awk '{print $1;}'"
+  register: python_version_check
+  become: true
+  become_user: "{{ python_user }}"
+  become_method: sudo
+  become_flags: -Hi
+  changed_when: false
+  failed_when: false
+
+- name: set facts
+  set_fact:
+    pyenv_installed: "{{ pyenv_check.rc == 0 | bool }}"
+    python_installed: "{{ python_version_installed.rc == 0 | bool }}"
+    python_detected_version: "{{ '' if python_version_check.rc > 0 else python_version_check.stdout }}"
+
+- name: detect whether correct version of python
+  set_fact: python_version_changed="{{ not python_detected_version.startswith(python_version) }}"

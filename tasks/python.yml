@@ -1,0 +1,14 @@
+---
+- name: install the given python version
+  command: "{{ pyenv_executable }} install {{ python_version }}"
+  become: true
+  become_user: "{{ python_user }}"
+  when: (not python_installed)
+
+- name: set the python version in pyenv
+  command: "{{ pyenv_executable }} local {{ python_version }}"
+  become: true
+  become_user: "{{ python_user }}"
+  become_method: sudo
+  become_flags: -Hi
+  when: python_version_changed
