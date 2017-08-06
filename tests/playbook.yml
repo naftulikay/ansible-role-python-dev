@@ -5,13 +5,14 @@
     container_user: vagrant
   tasks:
     - name: create user
-      user: name={{ container_user }} comment="Container User" state=present
+      user: name={{ container_user }} comment="Container User" shell=/bin/bash state=present
 
 - name: build
   hosts: localhost
   roles:
     - role: python-dev
       python_user: vagrant
+      python_version: 2.7.13
 
 - name: test
   hosts: localhost
@@ -21,4 +22,7 @@
       degoss_no_clean: true
       goss_file: goss.yml
       goss_addtl_dirs: [goss.d/]
-      goss_env_vars: {}
+      goss_env_vars:
+        python_user: vagrant
+        python_version: 2.7.13
+        pyenv_executable: /home/vagrant/.pyenv/bin/pyenv

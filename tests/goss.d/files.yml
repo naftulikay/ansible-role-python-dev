@@ -1,4 +1,13 @@
 ---
 file:
-  '/dev/zero':
+  '/home/{{.Env.python_user}}/.bashrc':
+    exists: true
+    contains:
+      # check for pyenv root being set
+      - /export PYENV_ROOT=\"\$HOME/\.pyenv\"/
+      # check for path modifications
+      - /export PATH=\"\$PYENV_ROOT/bin\:\$PATH\"/
+      # check for init
+      - /\$\(pyenv init \-\)/
+  '/home/{{.Env.python_user}}/.pyenv':
     exists: true
