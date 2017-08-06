@@ -17,6 +17,7 @@
     path: "{{ python_user_home }}/.bashrc"
     owner: "{{ python_user }}"
     group: "{{ python_user }}"
+    marker: "# {mark} ansible: naftulikay.python-dev"
     block: |-
       # pyenv
       export PYENV_ROOT="$HOME/.pyenv"
