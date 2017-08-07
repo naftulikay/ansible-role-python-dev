@@ -1,13 +1,21 @@
 ---
-python_system_packages:
+# redhat/common.yml
+python_dev_packages:
+  libffi: libffi-devel
+  libxml2: libxml2-devel
+  libxslt: libxslt-devel
+  libyaml: libyaml-devel
+
+python_build_packages:
+  # python build dependencies
   - python
   - python-devel
+  - python34
+  - python34-devel
   - make
   - gcc
   - python2-pip
   - python34-pip
-  - git
-  - patch
   - zlib-devel
   - bzip2
   - bzip2-devel
@@ -17,3 +25,5 @@ python_system_packages:
   - openssl-devel
   - xz
   - xz-devel
+  - git
+  - patch

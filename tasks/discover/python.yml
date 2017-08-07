@@ -33,7 +33,7 @@
   failed_when: false
 
 - name: get python version
-  shell: "pyenv version |& awk '{print $1;}'"
+  shell: "{{ pyenv_executable }} version"
   register: python_version_check
   become: true
   become_user: "{{ python_user }}"
@@ -46,7 +46,7 @@
   set_fact:
     pyenv_installed: "{{ pyenv_check.rc == 0 | bool }}"
     python_installed: "{{ python_version_installed.rc == 0 | bool }}"
-    python_detected_version: "{{ '' if python_version_check.rc > 0 else python_version_check.stdout }}"
+    python_detected_version: "{{ '' if python_version_check.rc > 0 else python_version_check.stdout.strip() }}"
 
 - name: detect whether correct version of python
   set_fact: python_version_changed="{{ not python_detected_version.startswith(python_version) }}"

@@ -1,7 +1,17 @@
 ---
-python_system_packages:
+# ubuntu/common.yml
+python_dev_packages:
+  libffi: libffi-dev
+  libxml2: libxml2-dev
+  libxslt: libxslt1-dev
+  libyaml: libyaml-dev
+
+python_build_packages:
+  # python build dependencies
   - python
   - python-dev
+  - python3
+  - python3-dev
   - make
   - gcc
   - python-pip
