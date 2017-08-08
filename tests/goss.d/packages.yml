@@ -1,0 +1,8 @@
+---
+package:
+  '{{.Env.libffi_package}}': { installed: true }
+  '{{.Env.libxml2_package}}': { installed: true }
+  '{{.Env.libxslt_package}}': { installed: true }
+  '{{.Env.libyaml_package}}': { installed: true }
+  'git': { installed: true }
+  'patch': { installed: true }

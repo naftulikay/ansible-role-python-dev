@@ -25,9 +25,14 @@
   when: os_name == "ubuntu"
 
 # install system python dependencies
-- name: install system python dependencies
+- name: install python build dependencies
   package: name={{ item }} state=present
-  with_items: "{{ python_system_packages }}"
+  with_items: "{{ python_build_packages }}"
+
+# install pip egg dependencies
+- name: install python dev dependencies
+  package: name={{ item }} state=present
+  with_items: "{{ python_dev_packages.values() }}"
 
 # install pyenv
 - name: install pyenv

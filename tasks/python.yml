@@ -3,6 +3,7 @@
   command: "{{ pyenv_executable }} install {{ python_version }}"
   become: true
   become_user: "{{ python_user }}"
+  register: python_install_result
   when: (not python_installed)
 
 - name: set the python version in pyenv
@@ -11,4 +12,4 @@
   become_user: "{{ python_user }}"
   become_method: sudo
   become_flags: -Hi
-  when: python_version_changed
+  when: python_version_changed or python_install_result|changed
