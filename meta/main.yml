@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   name: python-dev
-  version: 'v1.0.2'
+  version: 'v1.0.3'
   author: Naftuli Kay
   description: Install and configure a Python development environment on a system.
 
