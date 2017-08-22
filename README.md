@@ -17,8 +17,10 @@ Officially tested operating systems are listed in the Galaxy manifest.
   <dd>Version of Python to install. Defaults to 2.7.</dd>
   <dt><code>addtl_python_system_packages</code></dt>
   <dd>A list of additional system packages to install.</dd>
-  <dt><code>addtl_python_pip_packages</code></dt>
-  <dd>A list of additional Python packages to install via pip.</dd>
+  <dt><code>addtl_python_pip_system_packages</code></dt>
+  <dd>A list of additional Python system packages to install via pip.</dd>
+  <dt><code>addtl_python_pip_user_packages</code></dt>
+  <dd>A list of additional Python user packages to install via pip.</dd>
 <dl>
 
 ## Dependencies
