@@ -47,6 +47,12 @@
   package: name={{ item }} state=present
   with_items: "{{ addtl_python_system_packages }}"
 
-- name: install additional python pip packages
+- name: install additional python system pip packages
   pip: name={{ item }} state=present
-  with_items: "{{ addtl_python_pip_packages }}"
+  with_items: "{{ addtl_python_pip_system_packages }}"
+
+- name: install additional python user pip packages
+  pip: name={{ item }} executable="{{ python_user_home }}.pyenv/shims/pip" state=present
+  with_items: "{{ addtl_python_pip_user_packages }}"
+  become: true
+  become_user: "{{ python_user }}"
