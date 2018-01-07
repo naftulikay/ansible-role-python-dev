@@ -12,17 +12,13 @@
   become_user: "{{ python_user }}"
   when: not (pyenv_installed | bool)
 
-- name: patch bashrc
-  blockinfile:
-    dest: "{{ python_user_home }}/.bashrc"
-    owner: "{{ python_user }}"
-    group: "{{ python_user }}"
-    marker: "# {mark} ansible: naftulikay.python-dev"
-    block: |-
-      # pyenv
-      export PYENV_ROOT="$HOME/.pyenv"
-      export PATH="$PYENV_ROOT/bin:$PATH"
-      eval "$(pyenv init -)"
+- name: install profile script
+  template:
+    src: pyenv.sh.j2
+    dest: /etc/profile.d/pyenv.sh
+    owner: root
+    group: root
+    mode: "0755"
 
 - name: remove temp installer
   file: name="{{ pyenv_tmp_installer }}" state=absent

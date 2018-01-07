@@ -71,7 +71,7 @@ test:
 	@# need a way to ask systemd in the container to wait until all services up
 	docker exec $(CONTAINER_ID) ansible --version
 	docker exec $(CONTAINER_ID) wait-for-boot
-	docker exec $(CONTAINER_ID) ansible-galaxy install -r ${MOUNT_PATH}/tests/requirements.yml
+	docker exec $(CONTAINER_ID) ansible-galaxy install --force -r ${MOUNT_PATH}/tests/requirements.yml
 	docker exec $(CONTAINER_ID) env ANSIBLE_FORCE_COLOR=yes \
 		ansible-playbook $(MOUNT_PATH)/tests/playbook.yml
 

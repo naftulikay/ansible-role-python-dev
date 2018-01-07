@@ -19,9 +19,10 @@
   vars: {}
   roles:
     - role: degoss
-      degoss_no_clean: true
+      degoss_debug: true
+      degoss_clean: false
       goss_file: goss.yml
-      goss_addtl_dirs: [goss.d/]
+      goss_addtl_dirs: [goss.d]
       goss_env_vars:
         libffi_package: "{{ python_dev_packages.libffi }}"
         libxml2_package: "{{ python_dev_packages.libxml2 }}"
