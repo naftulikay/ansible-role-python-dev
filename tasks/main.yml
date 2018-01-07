@@ -5,11 +5,11 @@
 
 # set facts to reliably determine os
 - name: discover operating system
-  include: discover/os.yml
+  include_tasks: discover/os.yml
 
 # set facts to reliably determine python variables
 - name: discover python
-  include: discover/python.yml
+  include_tasks: discover/python.yml
 
 # load per-os and per distro variables
 - name: load variables
@@ -36,11 +36,11 @@
 
 # install pyenv
 - name: install pyenv
-  include: pyenv.yml
+  include_tasks: pyenv.yml
 
 # install python
 - name: install python version
-  include: python.yml
+  include_tasks: python.yml
 
 # install additional dependencies
 - name: install additional python system packages

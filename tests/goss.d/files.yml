@@ -1,6 +1,6 @@
 ---
 file:
-  '/home/{{.Env.python_user}}/.bashrc':
+  '/etc/profile.d/pyenv.sh':
     exists: true
     contains:
       # check for pyenv root being set
@@ -9,5 +9,6 @@ file:
       - /export PATH=\"\$PYENV_ROOT/bin\:\$PATH\"/
       # check for init
       - /\$\(pyenv init \-\)/
+
   '/home/{{.Env.python_user}}/.pyenv':
     exists: true
