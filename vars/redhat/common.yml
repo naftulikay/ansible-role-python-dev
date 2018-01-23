@@ -10,8 +10,11 @@ python_build_packages:
   # python build dependencies
   - python
   - python-devel
+  - python-pycurl
   - python34
   - python34-devel
+  - python34-pycurl
+  - libcurl-devel
   - make
   - gcc
   - python2-pip
