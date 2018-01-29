@@ -12,3 +12,8 @@ file:
 
   '/home/{{.Env.python_user}}/.pyenv':
     exists: true
+
+  '/home/{{.Env.python_user}}/.pyenv/version':
+    exists: true
+    contains:
+      - "{{.Env.python_version}}"
