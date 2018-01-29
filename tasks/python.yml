@@ -7,7 +7,7 @@
   when: (not python_installed)
 
 - name: set the python version in pyenv
-  command: "{{ pyenv_executable }} local {{ python_version }}"
+  command: "{{ pyenv_executable }} global {{ python_version }}"
   become: true
   become_user: "{{ python_user }}"
   become_method: sudo
