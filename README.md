@@ -1,70 +1,40 @@
-# ansible-role-python-dev [![Build Status][img-build-status]][build-status]
+# ansible-role-python-dev [![Build Status][travis.svg]][travis]
 
 Installs and configures a Python development environment for a given user using [`pyenv`][pyenv].
 
 Available on Ansible Galaxy at [`naftulikay.python-dev`][galaxy].
 
-## Requirements
+## Usage
 
-Officially tested operating systems are listed in the Galaxy manifest.
+The role can be dropped in to quickly install and configure a Python development environment:
 
-## Role Variables
-
-<dl>
-  <dt><code>python_user</code></dt>
-  <dd>User to install Python tools for. Required.</dd>
-  <dt><code>python_version</code></dt>
-  <dd>Version of Python to install. Defaults to 2.7.</dd>
-  <dt><code>addtl_python_system_packages</code></dt>
-  <dd>A list of additional system packages to install.</dd>
-  <dt><code>addtl_python_pip_system_packages</code></dt>
-  <dd>A list of additional Python system packages to install via pip.</dd>
-  <dt><code>addtl_python_pip_user_packages</code></dt>
-  <dd>A list of additional Python user packages to install via pip.</dd>
-<dl>
-
-## Dependencies
-
-None.
-
-## Example Playbook
-
-Here are some example playbooks to get started with.
-
-### Defaults
-
-Simply get a Python development environment installed:
 
 ```yaml
 ---
-- name: install
+- name: build
   hosts: all
-  become: true
   roles:
     - role: python-dev
-      python_user: vagrant
-```
-
-### Install a Specific Version
-
-Install a specific version of Python:
-
-```yaml
----
-  - name: install
-    hosts: all
-    become: true
-    roles:
-      - role: python-dev
-        python_user: vagrant
-        python_version: '3.5'
+      # install version 2.7.13
+      python_version: 2.7.13
+      # the user to install python for
+      python_user: naftuli
+      # additional python packages from the system package manager to install
+      addtl_python_system_packages: []
+      # additional python pip packages to install globally on the system
+      addtl_python_pip_system_packages: []
+      # additional python pip packages to install via --user for the python user
+      addtl_python_pip_user_packages: []
 ```
 
 ## License
 
-MIT
+Licensed at your discretion under either:
 
- [build-status]: https://travis-ci.org/naftulikay/ansible-role-python-dev
- [img-build-status]: https://travis-ci.org/naftulikay/ansible-role-python-dev.svg?branch=master
+ - [MIT License](./LICENSE-MIT)
+ - [Apache License, Version 2.0](./LICENSE-APACHE)
+
+ [travis]: https://travis-ci.org/naftulikay/ansible-role-python-dev
+ [travis.svg]: https://travis-ci.org/naftulikay/ansible-role-python-dev.svg?branch=master
  [galaxy]: https://galaxy.ansible.com/naftulikay/python-dev/
  [pyenv]: https://github.com/pyenv/pyenv

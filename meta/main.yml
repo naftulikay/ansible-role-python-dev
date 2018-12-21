@@ -12,6 +12,6 @@ galaxy_info:
     - name: EL
       versions: [7]
     - name: Ubuntu
-      versions: [trusty, xenial]
+      versions: [trusty, xenial, bionic]
 
   galaxy_tags: [python]

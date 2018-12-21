@@ -1,24 +1,15 @@
 ---
 dist: trusty
-sudo: required
+sudo: false
 
-matrix:
-  fast_finish: true
+language: python
+python: '3.6'
 
-services:
-  - docker
-
-env:
-  global: # applied to every run
-    ROLE_NAME: python-dev
-
-  matrix: # each entry is its own run
-    - IMAGE_NAME: naftulikay/centos-vm:7
-    - IMAGE_NAME: naftulikay/xenial-vm:latest
-    - IMAGE_NAME: naftulikay/trusty-vm:latest
-
-script: make test-clean
+script:
+  - make test
 
 notifications:
-  email: { on_success: never, on_failure: never }
+  email:
+    on_success: never
+    on_failure: never
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
