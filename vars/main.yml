@@ -1,7 +1,0 @@
----
-python_version: "2.7.13"
-addtl_python_system_packages: []
-addtl_python_pip_system_packages: []
-addtl_python_pip_user_packages: []
-
-pyenv_tmp_installer: /tmp/pyenv

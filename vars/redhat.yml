@@ -1,11 +1,4 @@
 ---
-# redhat/common.yml
-python_dev_packages:
-  libffi: libffi-devel
-  libxml2: libxml2-devel
-  libxslt: libxslt-devel
-  libyaml: libyaml-devel
-
 python_build_packages:
   # python build dependencies
   - python
@@ -27,3 +20,7 @@ python_build_packages:
   - xz-devel
   - git
   - patch
+  - libffi-devel
+  - libxml2-devel
+  - libxslt-devel
+  - libyaml-devel

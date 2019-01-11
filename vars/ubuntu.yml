@@ -1,11 +1,4 @@
 ---
-# ubuntu/common.yml
-python_dev_packages:
-  libffi: libffi-dev
-  libxml2: libxml2-dev
-  libxslt: libxslt1-dev
-  libyaml: libyaml-dev
-
 python_build_packages:
   # python build dependencies
   - python
@@ -30,3 +23,7 @@ python_build_packages:
   - xz-utils
   - tk-dev
   - git
+  - libffi-dev
+  - libxml2-dev
+  - libxslt1-dev
+  - libyaml-dev

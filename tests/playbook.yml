@@ -1,33 +1,25 @@
 ---
-- name: setup
-  hosts: localhost
-  vars:
-    container_user: vagrant
+- name: wait for boot
+  hosts: all
+  become: true
   tasks:
-    - name: create user
-      user: name={{ container_user }} comment="Container User" shell=/bin/bash state=present
+    - name: await boot
+      command: wait-for-boot
+      changed_when: false
 
 - name: build
-  hosts: localhost
+  hosts: all
   roles:
-    - role: python-dev
-      python_user: vagrant
-      python_version: 2.7.13
+    - role: default
+      python_user: container
+      python_version: 3.7.2
 
 - name: test
-  hosts: localhost
-  vars: {}
+  hosts: all
   roles:
-    - role: degoss
-      degoss_debug: true
-      degoss_clean: false
+    - role: naftulikay.degoss
       goss_file: goss.yml
       goss_addtl_dirs: [goss.d]
-      goss_env_vars:
-        libffi_package: "{{ python_dev_packages.libffi }}"
-        libxml2_package: "{{ python_dev_packages.libxml2 }}"
-        libxslt_package: "{{ python_dev_packages.libxslt }}"
-        libyaml_package: "{{ python_dev_packages.libyaml }}"
-        python_user: vagrant
-        python_version: 2.7.13
-        pyenv_executable: /home/vagrant/.pyenv/bin/pyenv
+      goss_variables:
+        python_user: container
+        python_version: 3.7.2

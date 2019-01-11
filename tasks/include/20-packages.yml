@@ -1,0 +1,10 @@
+---
+- name: install epel
+  package: name=epel-release state=present
+  become: true
+  when: is_redhat_derivative
+
+- name: install python build dependencies
+  package: name={{ item }} state=present
+  with_items: "{{ python_build_packages }}"
+  become: true

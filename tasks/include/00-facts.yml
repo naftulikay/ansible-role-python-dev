@@ -1,4 +1,12 @@
 ---
+- name: load redhat variables
+  include_vars: redhat.yml
+  when: is_redhat_derivative
+
+- name: load ubuntu variables
+  include_vars: ubuntu.yml
+  when: is_ubuntu_derivative
+
 - name: get python user details
   command: getent passwd {{ python_user }}
   become: true
@@ -49,4 +57,5 @@
     python_detected_version: "{{ '' if python_version_check.rc > 0 else python_version_check.stdout.strip() }}"
 
 - name: detect whether correct version of python
-  set_fact: python_version_changed="{{ not python_detected_version.startswith(python_version) }}"
+  set_fact:
+    python_version_changed: "{{ not python_detected_version.startswith(python_version) }}"
