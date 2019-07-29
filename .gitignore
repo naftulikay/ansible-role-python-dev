@@ -1,8 +1,10 @@
-# python
-*.pyc
-*.pyo
-__pycache__
+# Ansible
+.ansible/galaxy-roles
+.ansible/roles
+*.retry
 
-# vagrant
-/.ansible
-/.vagrant
+tests/.ansible/
+
+# Vagrant
+.vagrant/
+*-VBoxSVC-*.log

@@ -12,4 +12,4 @@
   become_user: "{{ python_user }}"
   become_method: sudo
   become_flags: -Hi
-  when: python_version_changed or python_install_result|changed
+  when: python_version_changed or python_install_result is changed

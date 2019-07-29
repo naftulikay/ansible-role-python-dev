@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   name: python-dev
+  src: naftulikay.python-dev
   author: Naftuli Kay
   description: Install and configure a Python development environment on a system.
 
@@ -15,3 +16,6 @@ galaxy_info:
       versions: [trusty, xenial]
 
   galaxy_tags: [python]
+
+dependencies:
+  - role: naftulikay.base

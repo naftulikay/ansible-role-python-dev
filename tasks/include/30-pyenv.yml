@@ -1,16 +1,20 @@
 ---
-- name: download pyenv installer
-  get_url:
+- name: fetch pyenv installer
+  uri:
     url: https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer
-    dest: "{{ pyenv_tmp_installer }}"
-    mode: "0755"
+    method: GET
+    status_code: 200
+    return_content: true
+  register: pyenv_installer_response
   when: not pyenv_installed
 
 - name: install pyenv as the user
-  command: "{{ pyenv_tmp_installer }} -y"
+  command: sh -s -- -y
+  args:
+    stdin: "{{ pyenv_installer_response.content }}"
   become: true
   become_user: "{{ python_user }}"
-  when: not (pyenv_installed | bool)
+  when: not pyenv_installed
 
 - name: install profile script
   template:
@@ -19,6 +23,4 @@
     owner: root
     group: root
     mode: "0755"
-
-- name: remove temp installer
-  file: name="{{ pyenv_tmp_installer }}" state=absent
+  become: true
