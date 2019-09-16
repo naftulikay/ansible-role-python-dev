@@ -15,6 +15,7 @@ python_build_packages:
   - libbz2-dev
   - libreadline-dev
   - libsqlite0-dev
+  - libsqlite3-dev
   - wget
   - curl
   - llvm
