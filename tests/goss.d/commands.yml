@@ -5,3 +5,6 @@ command:
     exit-status: 0
     stdout:
       - "{{.Vars.python_version}}"
+
+  'sudo -Hu {{.Vars.python_user}} /home/{{ .Vars.python_user}}/.pyenv/shims/python -c "import sqlite3"':
+    exit-status: 0
